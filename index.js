@@ -8,6 +8,13 @@ app.get("/", (req, res) => {
 
 io.on('connection', (socket) => {
     console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
+    socket.on('balabaka', function(message) {
+        console.log(message);
+        io.emit('zaza', message);
+    });
 });
 
 http.listen(3000, () => {
